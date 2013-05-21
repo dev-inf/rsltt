@@ -1,0 +1,13 @@
+<meta charset="utf-8">
+<?php echo  HTML::style('css/bootstrap.min.css') ; ?>
+<?php echo  HTML::style('css/design.css') ; ?>
+<?php echo  HTML::script('js/jquery-1.9.1.min.js') ; ?>
+<?php echo  HTML::script('js/bootstrap.min.js') ; ?>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#myCarousel').carousel();
+    $('#myCarousel2').carousel({
+        interval: 2000
+    });
+});
+</script>

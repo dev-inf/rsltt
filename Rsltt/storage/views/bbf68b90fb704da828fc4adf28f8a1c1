@@ -1,0 +1,1 @@
+<p>&copy; RSLTT 2013</p>

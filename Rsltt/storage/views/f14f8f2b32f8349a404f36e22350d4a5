@@ -1,0 +1,37 @@
+<div id="myCarousel" class="carousel slide">
+    <ol class="carousel-indicators">
+        <?php for ($i=0; $i< count($news); $i++): ?>
+            <?php if ($i == 0): ?>
+                <li data-target="#myCarousel" class="active" data-slide-to="<?php echo  $i ; ?>"></li>
+            <?php else: ?>
+                <li data-target="#myCarousel" data-slide-to="<?php echo  $i ; ?>"></li>
+            <?php endif; ?>
+        <?php endfor; ?>
+    </ol>
+    <div class="carousel-inner">
+        <?php foreach ($news as $key => $new): ?>
+        <?php if ($key==0): ?>
+        <div class="item active">  
+        <?php else: ?>
+        <div class="item">  
+        <?php endif; ?>
+        
+            <?php echo  HTML::image('img/'.$new->image_url, '') ; ?>
+            <div class="carousel-caption">
+                <h4><?php echo  $new->title ; ?></h4>
+                <p><?php echo  $new->short_content ; ?></p>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('div.carousel-inner div.item').first(function() {
+        $(this).addClass('active');
+    });
+});
+</script>

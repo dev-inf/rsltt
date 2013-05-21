@@ -1,0 +1,8 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+	
+
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('admin/skull')->with(get_defined_vars())->render(); ?>
