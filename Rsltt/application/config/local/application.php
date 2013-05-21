@@ -2,7 +2,7 @@
 
 return array(
 
-    'url' => 'http://localhost/Laravel/public',
+    'url' => 'http://localhost/Rsltt/public',
     'profiler' => true
 
 );

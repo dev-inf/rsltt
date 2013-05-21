@@ -35,6 +35,7 @@
 
 // Register the home controller
 Route::controller('home');
+Route::controller('admin.dump');
 Route::controller('admin.panel');
 Route::controller('admin.test');
 Route::controller('admin.users');
