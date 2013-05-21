@@ -1,0 +1,25 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+<table class="table table-stripped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Libellé</th>
+      <th style="width:20%;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($rights as $right): ?>
+    <tr>
+      <td><?php echo $right->libelle; ?></td>
+      <td style="text-align:center;">
+        <a class="btn btn-mini btn-warning">Modifier</a>
+        <a class="btn btn-mini btn-danger">Supprimer</a>
+      </td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+
+<?php \Laravel\Section::stop(); ?>
+<?php echo view('admin.skull')->with(get_defined_vars())->render(); ?>

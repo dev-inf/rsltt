@@ -1,0 +1,14 @@
+<?php \Laravel\Section::start('content'); ?>
+
+<?php echo  Form::Open() ; ?> <br />
+<?php echo  Form::Token() ; ?> <br />
+<?php echo  Form::Text('niveau', '', array('placeholder'=>'Niveau')) ; ?> <br /> 
+<?php echo  Form::Text('division', '', array('placeholder'=>'Division')) ; ?> <br />
+<?php echo  Form::Text('poule', '', array('placeholder'=>'Poule')) ; ?> <br />
+<?php echo  Form::Text('saison', '', array('placeholder'=>'Saison')) ; ?> <br />
+<?php echo  Form::Text('phase', '', array('placeholder'=>'phase')) ; ?><br />
+<?php echo  Form::Submit() ; ?><br />
+<?php echo  Form::Close() ; ?>
+
+<?php \Laravel\Section::stop(); ?>
+<?php echo view('admin/skull')->with(get_defined_vars())->render(); ?>

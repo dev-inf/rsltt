@@ -1,0 +1,22 @@
+<html>
+<head>
+    <?php echo view('theme.skull.head')->with(get_defined_vars())->render(); ?>
+</head>
+<body>
+    <nav>
+        <?php echo view('theme.skull.navbar')->with(get_defined_vars())->render(); ?>
+    </nav>
+
+    <header>
+        <?php echo view('theme.skull.header')->with(get_defined_vars())->render(); ?>
+    </header>
+
+    <section>
+        <?php echo  $content ; ?>
+    </section>
+
+    <footer>
+        <?php echo view('theme.skull.footer')->with(get_defined_vars())->render(); ?>
+    </footer>
+</body>
+</html>
