@@ -34,5 +34,6 @@
  */
 
 return array(
-    'mysqldump-php' => array('auto' => true)
+    'mysqldump-php' => array('auto' => true),
+    'generation-championnat' => array('auto' => true)
 );

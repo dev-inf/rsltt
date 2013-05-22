@@ -1,12 +1,35 @@
 -- mysqldump-php SQL Dump
 -- https://github.com/clouddueling/mysqldump-php
 --
--- Host: localhost
--- Generation Time: Tue, 21 May 2013 21:31:40 +0000
+-- Host: 127.0.0.1
+-- Generation Time: Wed, 22 May 2013 19:14:58 +0200
 
 --
 -- Database: `Laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `champconfs`
+--
+
+CREATE TABLE `champconfs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nb_equipe` int(11) NOT NULL,
+  `nb_journee` int(11) NOT NULL,
+  `phase_debut` int(11) NOT NULL,
+  `score_max` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `champconfs`
+--
+
+INSERT INTO `champconfs` VALUES('1', '8', '7', '1', '20', '2013-05-22 10:12:01', '2013-05-22 10:12:01');
 
 -- --------------------------------------------------------
 
@@ -18,6 +41,7 @@ CREATE TABLE `championnat_team` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `championnat_id` int(11) NOT NULL,
   `team_id` int(11) NOT NULL,
+  `place` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -26,14 +50,20 @@ CREATE TABLE `championnat_team` (
   KEY `team_id` (`team_id`),
   CONSTRAINT `championnat_team_ibfk_1` FOREIGN KEY (`championnat_id`) REFERENCES `championnats` (`id`),
   CONSTRAINT `championnat_team_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `championnat_team`
 --
 
-INSERT INTO `championnat_team` VALUES('1', '1', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `championnat_team` VALUES('2', '1', '2', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `championnat_team` VALUES('1', '1', '1', '1', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `championnat_team` VALUES('2', '1', '2', '2', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `championnat_team` VALUES('3', '1', '3', '3', '2013-05-22 10:03:55', '2013-05-22 10:03:55');
+INSERT INTO `championnat_team` VALUES('4', '1', '4', '4', '2013-05-22 10:03:57', '2013-05-22 10:03:57');
+INSERT INTO `championnat_team` VALUES('5', '1', '5', '5', '2013-05-22 10:03:57', '2013-05-22 10:03:57');
+INSERT INTO `championnat_team` VALUES('6', '1', '6', '6', '2013-05-22 10:03:57', '2013-05-22 10:03:57');
+INSERT INTO `championnat_team` VALUES('7', '1', '7', '7', '2013-05-22 10:03:57', '2013-05-22 10:03:57');
+INSERT INTO `championnat_team` VALUES('8', '1', '8', '8', '2013-05-22 10:03:57', '2013-05-22 10:03:57');
 
 -- --------------------------------------------------------
 
@@ -49,17 +79,20 @@ CREATE TABLE `championnats` (
   `saison` varchar(10) NOT NULL,
   `aller_retour` tinyint(1) NOT NULL,
   `phase` int(1) NOT NULL,
+  `champconf_id` int(11) NOT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `champconf_id` (`champconf_id`),
+  CONSTRAINT `championnats_ibfk_1` FOREIGN KEY (`champconf_id`) REFERENCES `champconfs` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `championnats`
 --
 
-INSERT INTO `championnats` VALUES('1', 'Departemental', '1', 'C', '2012-2013', '0', '1', '1', '2013-05-19 18:12:32', '2013-05-19 18:12:32');
+INSERT INTO `championnats` VALUES('1', 'Departemental', '1', 'C', '2012-2013', '0', '1', '1', '1', '2013-05-19 18:12:32', '2013-05-19 18:12:32');
 
 -- --------------------------------------------------------
 
@@ -189,14 +222,19 @@ CREATE TABLE `journees` (
   PRIMARY KEY (`id`),
   KEY `championnat_id` (`championnat_id`),
   CONSTRAINT `journees_ibfk_1` FOREIGN KEY (`championnat_id`) REFERENCES `championnats` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `journees`
 --
 
-INSERT INTO `journees` VALUES('1', '1', '1', '2013-05-19 18:23:15', '1', '2013-05-19 18:23:15', '2013-05-19 18:23:15');
-INSERT INTO `journees` VALUES('2', '1', '2', '2013-05-19 18:23:15', '1', '2013-05-19 18:23:15', '2013-05-19 18:23:15');
+INSERT INTO `journees` VALUES('32', '1', '1', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:22', '2013-05-22 11:30:22');
+INSERT INTO `journees` VALUES('33', '1', '2', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `journees` VALUES('34', '1', '3', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `journees` VALUES('35', '1', '4', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `journees` VALUES('36', '1', '5', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `journees` VALUES('37', '1', '6', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `journees` VALUES('38', '1', '7', '0000-00-00 00:00:00', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
 
 -- --------------------------------------------------------
 
@@ -223,18 +261,40 @@ CREATE TABLE `matches` (
   CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`journee_id`) REFERENCES `journees` (`id`),
   CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`team_d_id`) REFERENCES `teams` (`id`),
   CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`team_e_id`) REFERENCES `teams` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `matches`
 --
 
-INSERT INTO `matches` VALUES('1', '1', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
-INSERT INTO `matches` VALUES('2', '1', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
-INSERT INTO `matches` VALUES('3', '1', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
-INSERT INTO `matches` VALUES('4', '2', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
-INSERT INTO `matches` VALUES('5', '2', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
-INSERT INTO `matches` VALUES('6', '2', '1', '12', '2', '8', '1', '1', '2013-05-19 18:23:48', '2013-05-19 18:23:48');
+INSERT INTO `matches` VALUES('7', '32', '1', '0', '8', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 11:30:22');
+INSERT INTO `matches` VALUES('8', '32', '2', '0', '7', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 11:30:22');
+INSERT INTO `matches` VALUES('9', '32', '3', '0', '6', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('10', '32', '4', '0', '5', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('11', '33', '7', '0', '1', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('12', '33', '6', '0', '2', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('13', '33', '5', '0', '3', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('14', '33', '8', '0', '4', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('15', '34', '1', '0', '6', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('16', '34', '2', '0', '5', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('17', '34', '3', '0', '4', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('18', '34', '8', '0', '7', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('19', '35', '5', '0', '1', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('20', '35', '4', '0', '2', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('21', '35', '3', '0', '8', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('22', '35', '6', '0', '7', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('23', '36', '1', '0', '4', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('24', '36', '2', '0', '3', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('25', '36', '7', '0', '5', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('26', '36', '8', '0', '6', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
+INSERT INTO `matches` VALUES('27', '37', '3', '0', '1', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('28', '37', '2', '0', '8', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('29', '37', '4', '0', '7', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('30', '37', '5', '0', '6', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('31', '38', '1', '0', '2', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('32', '38', '7', '0', '3', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('33', '38', '6', '0', '4', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
+INSERT INTO `matches` VALUES('34', '38', '8', '0', '5', '0', '0', '1', '2013-05-22 11:30:25', '2013-05-22 11:30:25');
 
 -- --------------------------------------------------------
 
@@ -304,7 +364,7 @@ CREATE TABLE `teams` (
   KEY `club_id` (`club_id`),
   KEY `club_id_2` (`club_id`),
   CONSTRAINT `teams_ibfk_1` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teams`
@@ -312,6 +372,12 @@ CREATE TABLE `teams` (
 
 INSERT INTO `teams` VALUES('1', '1', '1', '1', '2013-05-19 18:13:55', '2013-05-19 18:13:55');
 INSERT INTO `teams` VALUES('2', '1', '2', '1', '2013-05-19 18:13:55', '2013-05-19 18:13:55');
+INSERT INTO `teams` VALUES('3', '1', '3', '1', '2013-05-22 09:59:38', '2013-05-22 09:59:38');
+INSERT INTO `teams` VALUES('4', '1', '4', '1', '2013-05-22 10:00:56', '2013-05-22 10:00:56');
+INSERT INTO `teams` VALUES('5', '1', '5', '1', '2013-05-22 10:00:56', '2013-05-22 10:00:56');
+INSERT INTO `teams` VALUES('6', '1', '6', '1', '2013-05-22 10:00:56', '2013-05-22 10:00:56');
+INSERT INTO `teams` VALUES('7', '1', '7', '1', '2013-05-22 10:00:56', '2013-05-22 10:00:56');
+INSERT INTO `teams` VALUES('8', '1', '8', '1', '2013-05-22 10:00:56', '2013-05-22 10:00:56');
 
 -- --------------------------------------------------------
 
