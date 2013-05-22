@@ -14,7 +14,7 @@
     <?php endforeach; ?>    
 </ul>
 
-<div id="myTabContent" class="tab-content span8 offset2">
+<div id="myTabContent" class="tab-content span10 offset1">
     <?php foreach($journees as $key=> $j): ?>
     <?php if($key==0): ?>
     <div class="tab-pane fade in active" id="journee<?php echo $j->numero; ?>">
@@ -27,15 +27,17 @@
                         <th class='span5' style='text-align: right;'>Domcile</th>
                         <th colspan='2' style='text-align: center;'>Score</th>
                         <th class='span5'>Exterieur</th>
+                        <th class='span1'></th>
                     </tr>
                 </thead>    
                 <tbody>
                     <?php foreach($j->matches as $match): ?>
                     <tr>
-                        <td style='text-align: right;'><?php echo  $match->team_d->club->nom.' '. $match->team_d->numero; ?></td>
+                        <td style='text-align: right;'><?php echo  HTML::Link($match->team_d->id, $match->team_d->club->abreviation.' '. $match->team_d->numero); ?></td>
                         <td class='span1' style='text-align: center;' contenteditable='true' data-match='<?php echo $match->id; ?>' data-reset='<?php echo $match->score_d; ?>' data-team='d'><?php echo  $match->score_d; ?></td>
                         <td class='span1' style='text-align: center;' contenteditable='true' data-match='<?php echo $match->id; ?>' data-reset='<?php echo $match->score_e; ?>' data-team='e'><?php echo  $match->score_e; ?></td>
-                        <td><?php echo  $match->team_e->club->nom.' '. $match->team_e->numero; ?></td>
+                        <td><?php echo  HTML::Link($match->team_e->id, $match->team_e->club->abreviation.' '. $match->team_e->numero); ?></td>
+                        <td><button class="btn btn-warning btn-mini" name="reset" data-match='<?php echo $match->id; ?>'>RàZ</button></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -44,11 +46,106 @@
 
         <?php endforeach; ?>    
     </div>
-    
+
     <div class="alert alert-success span10 offset1" data-name="addedSuccessfully" style="display: none;">
-    Les données ont été modifiées avec succès.
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-</div>
+        Les données ont été modifiées avec succès.
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+    </div>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#classement" data-toggle="pill">Classement</a></li>
+        <li><a href="#classement_domicile" data-toggle="pill">Classement Domicile</a></li>
+        <li><a href="#classement_exterieur" data-toggle="pill">Classement Exterieur</a></li>
+    </ul>
+
+    <div id="myTabContent2" class="tab-content span8 offset2">
+        <div class="tab-pane fade in active" id="classement">
+            <table class='table table-stripped table-bordered table-hover' id="classement">
+                <thead>
+                    <tr>
+                        <th class='span1' style='text-align: center;'>Place</th>
+                        <th class='span6'>Equipe</th>
+                        <th class='span1' style='text-align: center;'>J</th>
+                        <th class='span1' style='text-align: center;'>V</th>
+                        <th class='span1' style='text-align: center;'>N</th>
+                        <th class='span1' style='text-align: center;'>D</th>
+                        <th class='span1' style='text-align: center;'>PTS</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <?php foreach($champ->classement as $key=>$clt): ?>
+                    <?php $table[$clt->team->id] = $key + 1; ?>
+                    <tr>
+                        <td style='text-align: center;'><b><?php echo $key+1; ?></b></td>
+                        <td><?php echo $clt->team->club->nom.' <i>('.$clt->team->club->abreviation.')</i> '.$clt->team->numero; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->played; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->win; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->nul; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->loose; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->points; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade in" id="classement_domicile">
+            <table class='table table-stripped table-bordered table-hover' id="classement_domicile">
+                <thead>
+                    <tr>
+                        <th class='span1' style='text-align: center;'>Place</th>
+                        <th class='span6'>Equipe</th>
+                        <th class='span1' style='text-align: center;'>J</th>
+                        <th class='span1' style='text-align: center;'>V</th>
+                        <th class='span1' style='text-align: center;'>N</th>
+                        <th class='span1' style='text-align: center;'>D</th>
+                        <th class='span1' style='text-align: center;'>PTS</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <?php foreach($champ->classement()->order_by('points_d', 'desc')->get() as $key=>$clt): ?>
+                    <tr>
+                        <td style='text-align: center;'><b><?php echo $key+1; ?></b> <i>(<?php echo $table[$clt->team->id]; ?>)</i></td>
+                        <td><?php echo $clt->team->club->nom.' <i>('.$clt->team->club->abreviation.')</i> '.$clt->team->numero; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->played_d; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->win_d; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->nul_d; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->loose_d; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->points_d; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade in" id="classement_exterieur">
+            <table class='table table-stripped table-bordered table-hover' id="classement_exterieur">
+                <thead>
+                    <tr>
+                        <th class='span1' style='text-align: center;'>Place</th>
+                        <th class='span6'>Equipe</th>
+                        <th class='span1' style='text-align: center;'>J</th>
+                        <th class='span1' style='text-align: center;'>V</th>
+                        <th class='span1' style='text-align: center;'>N</th>
+                        <th class='span1' style='text-align: center;'>D</th>
+                        <th class='span1' style='text-align: center;'>PTS</th>
+                    </tr>
+                </thead>    
+                <tbody>
+                    <?php foreach($champ->classement()->order_by('points_e', 'desc')->get() as $key=>$clt): ?>
+                    <tr>
+                        <td style='text-align: center;'><b><?php echo $key+1; ?></b> <i>(<?php echo $table[$clt->team->id]; ?>)</i></td>
+                        <td><?php echo $clt->team->club->nom.' <i>('.$clt->team->club->abreviation.')</i> '.$clt->team->numero; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->played_e; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->win_e; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->nul_e; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->loose_e; ?></td>
+                        <td style='text-align: center;'><?php echo $clt->points_e; ?></td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <?php \Laravel\Section::stop(); ?>
 
 
@@ -58,16 +155,37 @@
     <?php foreach($js as $j): ?>
     <?php echo HTML::script($j); ?>
     <?php endforeach; ?>
+
     <?php endif; ?>
+    <?php echo HTML::script("js/jquery.tablesorter.js"); ?>
 
     <style>
         td[contenteditable=true].error {
             border:2px solid red;
         }
+        th.header{
+         cursor: pointer; 
+        }
+        th.headerSortDown
+        {background-image: url(/Rsltt/public/img/asc.gif);  
+         background-repeat: no-repeat; 
+         background-position: bottom center; 
+         margin-left: -1px; 
+        }
+        th.headerSortUp
+        {background-image: url(/Rsltt/public/img/desc.gif); 
+         background-repeat: no-repeat; 
+         background-position: bottom center; 
+         margin-left: -1px; 
+        }
     </style>
 
     <script>
         $(document).ready(function() {
+            $("table#classement").tablesorter( {sortList: [[0,0],[6,1]]} ); 
+            $("table#classement_domicile").tablesorter( {sortList: [[0,0],[6,1]]} ); 
+            $("table#classement_exterieur").tablesorter( {sortList: [[0,0],[6,1]]} ); 
+
             $('td[contenteditable=true]').on('blur', function() {
                 console.log($.trim($(this).html()));
                 if ($(this).html() != $(this).attr('data-reset')) {
@@ -96,6 +214,9 @@
                     $(this).removeClass('error');
                 }
             });
+            $('button[name=reset]').on('click', function() {
+                postScore($(this).attr('data-match'), 0, 0);
+            });
         });
 
         function postScore(idMatch, scoreDomicile, scoreExterieur)
@@ -111,8 +232,10 @@
                 }
             });
         }
-        
-        $(document).on('click', function(){$('.alert').slideUp('fast');})
+
+        $(document).on('click', function() {
+            $('.alert').slideUp('fast');
+        })
     </script>
     <?php \Laravel\Section::stop(); ?>
 <?php echo view('admin/skull')->with(get_defined_vars())->render(); ?>

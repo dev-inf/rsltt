@@ -14,6 +14,11 @@ class Championnat extends Eloquent {
     {
         return $this->belongs_to('Champconf');
     }
+    
+    public function classement()
+    {
+        return $this->has_many('Classement');
+    }
 
 }
 
