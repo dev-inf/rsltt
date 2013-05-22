@@ -2,7 +2,7 @@
 -- https://github.com/clouddueling/mysqldump-php
 --
 -- Host: 127.0.0.1
--- Generation Time: Wed, 22 May 2013 19:14:58 +0200
+-- Generation Time: Wed, 22 May 2013 19:16:42 +0200
 
 --
 -- Database: `Laravel`
@@ -13,6 +13,8 @@
 --
 -- Table structure for table `champconfs`
 --
+
+DROP TABLE IF EXISTS `champconfs`;
 
 CREATE TABLE `champconfs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -36,6 +38,8 @@ INSERT INTO `champconfs` VALUES('1', '8', '7', '1', '20', '2013-05-22 10:12:01',
 --
 -- Table structure for table `championnat_team`
 --
+
+DROP TABLE IF EXISTS `championnat_team`;
 
 CREATE TABLE `championnat_team` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -71,6 +75,8 @@ INSERT INTO `championnat_team` VALUES('8', '1', '8', '8', '2013-05-22 10:03:57',
 -- Table structure for table `championnats`
 --
 
+DROP TABLE IF EXISTS `championnats`;
+
 CREATE TABLE `championnats` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `niveau` varchar(20) NOT NULL,
@@ -100,6 +106,8 @@ INSERT INTO `championnats` VALUES('1', 'Departemental', '1', 'C', '2012-2013', '
 -- Table structure for table `civilities`
 --
 
+DROP TABLE IF EXISTS `civilities`;
+
 CREATE TABLE `civilities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(3) NOT NULL,
@@ -118,6 +126,8 @@ INSERT INTO `civilities` VALUES('2', 'Mme');
 --
 -- Table structure for table `clubs`
 --
+
+DROP TABLE IF EXISTS `clubs`;
 
 CREATE TABLE `clubs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -141,6 +151,8 @@ INSERT INTO `clubs` VALUES('1', 'ok', 'ok', '1', '0000-00-00 00:00:00', '0000-00
 -- Table structure for table `group_right`
 --
 
+DROP TABLE IF EXISTS `group_right`;
+
 CREATE TABLE `group_right` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
@@ -162,6 +174,8 @@ CREATE TABLE `group_right` (
 --
 -- Table structure for table `group_user`
 --
+
+DROP TABLE IF EXISTS `group_user`;
 
 CREATE TABLE `group_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -185,6 +199,8 @@ INSERT INTO `group_user` VALUES('1', '1', '1');
 --
 -- Table structure for table `groups`
 --
+
+DROP TABLE IF EXISTS `groups`;
 
 CREATE TABLE `groups` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -210,6 +226,8 @@ INSERT INTO `groups` VALUES('1', 'Administrateurs', 'default.png', NULL, '1', '2
 --
 -- Table structure for table `journees`
 --
+
+DROP TABLE IF EXISTS `journees`;
 
 CREATE TABLE `journees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -241,6 +259,8 @@ INSERT INTO `journees` VALUES('38', '1', '7', '0000-00-00 00:00:00', '1', '2013-
 --
 -- Table structure for table `matches`
 --
+
+DROP TABLE IF EXISTS `matches`;
 
 CREATE TABLE `matches` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -302,6 +322,8 @@ INSERT INTO `matches` VALUES('34', '38', '8', '0', '5', '0', '0', '1', '2013-05-
 -- Table structure for table `nouveautes`
 --
 
+DROP TABLE IF EXISTS `nouveautes`;
+
 CREATE TABLE `nouveautes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -331,6 +353,8 @@ INSERT INTO `nouveautes` VALUES('2', '2', 'Ma deuxième news', 'Lorem ipsum dolo
 -- Table structure for table `rights`
 --
 
+DROP TABLE IF EXISTS `rights`;
+
 CREATE TABLE `rights` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `right` varchar(255) NOT NULL,
@@ -352,6 +376,8 @@ INSERT INTO `rights` VALUES('1', 'access_admin_panel', 'Accèder au panneau d\'a
 --
 -- Table structure for table `teams`
 --
+
+DROP TABLE IF EXISTS `teams`;
 
 CREATE TABLE `teams` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -384,6 +410,8 @@ INSERT INTO `teams` VALUES('8', '1', '8', '1', '2013-05-22 10:00:56', '2013-05-2
 --
 -- Table structure for table `users`
 --
+
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
