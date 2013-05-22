@@ -183,9 +183,10 @@
 
     <script>
         $(document).ready(function() {
+            if($("table#classement tbody tr").length!=0) {
             $("table#classement").tablesorter( {sortList: [[0,0],[6,1]]} ); 
             $("table#classement_domicile").tablesorter( {sortList: [[0,0],[6,1]]} ); 
-            $("table#classement_exterieur").tablesorter( {sortList: [[0,0],[6,1]]} ); 
+            $("table#classement_exterieur").tablesorter( {sortList: [[0,0],[6,1]]} ); }
 
             $('td[contenteditable=true]').on('blur', function() {
                 console.log($.trim($(this).html()));
