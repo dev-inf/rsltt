@@ -16,6 +16,7 @@ class Admin_Dump_Controller extends Base_Controller {
         $dump->user = $conn['username'];
         $dump->pass = $conn['password'];
         $dump->db = $conn['database'];
+        $dump->droptableifexists = true;
         $dump->filename = $filepath . $filename;
         $dump->start();
 
