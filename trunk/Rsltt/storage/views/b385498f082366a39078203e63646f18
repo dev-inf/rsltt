@@ -1,0 +1,22 @@
+
+<?php \Laravel\Section::start('content'); ?>
+
+<form>
+	<label for="title">Titre* :</label>
+	<input type="text" id="title" style="width:75%;" placeholder="Saisissez le titre de la news ..."/>
+
+	<label for="short_content">Description : <i>(Visible sur le slider de la page d'accueil)</i></label>
+	<textarea id="short_content" style="width:75%;" rows="5" placeholder="Saisissez une brève description de l'article ..."></textarea>
+
+	<label for="content">Contenu* :</label>
+	<textarea id="content" style="width:75%;" rows="20" placeholder="Saisissez le contenu de l'article ..."></textarea>
+
+	<label for="image_url">*Image :</label>
+	<input type="file" id="image_url"/>
+	<br/><br/>
+	<button class="btn btn-success">Enregistrer la News</button>
+	<a class="btn btn-danger btn-small" href="#">Annuler</a>
+</form>
+
+<?php \Laravel\Section::stop(); ?>
+<?php echo view('admin.skull')->with(get_defined_vars())->render(); ?>

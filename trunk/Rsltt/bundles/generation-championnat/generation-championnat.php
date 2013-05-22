@@ -8,7 +8,7 @@ class GenerationChampionnat {
         $nbEquipe = $champ->champconf->nb_equipe;
         $nbJournee = $champ->champconf->nb_journee;
 
-        $nbPhase = 1;
+        $nbPhase = $champ->champconf->nb_phase;
         $champ8 = $this->champ8();
 
         foreach ($champ->journees as $j)

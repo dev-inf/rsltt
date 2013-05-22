@@ -208,8 +208,8 @@ CREATE TABLE `groups` (
   `avatar_url` varchar(255) NOT NULL DEFAULT 'default.png',
   `group_id` int(11) DEFAULT NULL,
   `enable` tinyint(1) NOT NULL,
-  `creation_date` datetime NOT NULL,
-  `update_date` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `group_id` (`group_id`),
   CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`)
@@ -360,8 +360,8 @@ CREATE TABLE `rights` (
   `right` varchar(255) NOT NULL,
   `libelle` varchar(255) NOT NULL,
   `enable` tinyint(1) NOT NULL DEFAULT '1',
-  `create_date` datetime NOT NULL,
-  `update_date` datetime NOT NULL,
+  `create_at` datetime NOT NULL,
+  `update_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -422,8 +422,8 @@ CREATE TABLE `users` (
   `password` varchar(64) CHARACTER SET utf8 NOT NULL,
   `avatar_url` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT 'default.png',
   `enable` tinyint(1) NOT NULL DEFAULT '1',
-  `createdate` datetime NOT NULL,
-  `updatedate` datetime NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `civility` (`civility_id`),
   KEY `civility_id` (`civility_id`),

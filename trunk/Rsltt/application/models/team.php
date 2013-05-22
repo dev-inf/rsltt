@@ -12,9 +12,14 @@ class Team extends Eloquent {
           return $this->has_many_and_belongs_to('Championnat');
     }
 
-    public function matches()
+    public function matches_d()
     {
-    	return $this->has_many('Match');
+    	return $this->has_many('Match', 'team_d_id');
+    }
+
+    public function matches_e()
+    {
+    	return $this->has_many('Match', 'team_e_id');
     }
 }
 
