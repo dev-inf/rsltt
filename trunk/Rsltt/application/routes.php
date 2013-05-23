@@ -34,7 +34,9 @@
 //Route::controller('test@hello');
 
 // Register the home controller
+/*
 Route::controller('home');
+Route::controller('login');
 Route::controller('admin.dump');
 Route::controller('admin.panel');
 Route::controller('admin.test');
@@ -42,7 +44,10 @@ Route::controller('admin.users');
 Route::controller('admin.groups');
 Route::controller('admin.rights');
 Route::controller('admin.news');
-Route::controller('admin.championnats');
+Route::controller('admin.championnats');*/
+Route::controller(Controller::detect());
+
+Route::filter('pattern: admin*', 'auth');
 
 Route::get('/admin', 'admin.panel@index');
 
@@ -132,5 +137,8 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
+	if (Auth::guest()) {
+            Session::flash('referer', URL::current());
+            return Redirect::to('login');
+        }
 });
