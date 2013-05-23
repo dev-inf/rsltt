@@ -58,7 +58,7 @@
                 </li>
             </ul>
             <ul class="nav pull-right">
-                <li><a href="#">Se Connecter</a></li>
+                @if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Mon Compte
@@ -66,11 +66,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Accèder à mon compte</a></li>
-                        <li>{{ HTML::link('/admin/', 'Administration') }}</li>
+                        <li>{{ HTML::link(URL::base().'/admin/', 'Administration') }}</li>
                         <li class="divider"></li>
-                        <li><a href="#">Se déconnecter</a></li>
+                        <li>{{ HTML::link(URL::base().'/login/logout', 'Se Déconnecter') }}</li>
                     </ul>
                 </li>
+                @else
+                <li>{{ HTML::link(URL::base().'/login', 'Se Connecter') }}</li>
+                @endif
             </ul>
         </div>
     </div>
