@@ -23,7 +23,8 @@
 
 $environments = array(
   'prod' => array('http://rsltt.fr/test*'),
-	'local' => array('http://localhost*', 'http://127.0.0.1*', '*.dev')
+	'local' => array('http://localhost*', 'http://127.0.0.1*', '*.dev'),
+	'prod' => array('http://rsltt.fr*')
 
 );
 
