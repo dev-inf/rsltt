@@ -2,7 +2,7 @@
 -- https://github.com/clouddueling/mysqldump-php
 --
 -- Host: 127.0.0.1
--- Generation Time: Wed, 22 May 2013 19:16:42 +0200
+-- Generation Time: Wed, 29 May 2013 22:53:35 +0200
 
 --
 -- Database: `Laravel`
@@ -148,30 +148,6 @@ INSERT INTO `clubs` VALUES('1', 'ok', 'ok', '1', '0000-00-00 00:00:00', '0000-00
 -- --------------------------------------------------------
 
 --
--- Table structure for table `group_right`
---
-
-DROP TABLE IF EXISTS `group_right`;
-
-CREATE TABLE `group_right` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_id` int(11) NOT NULL,
-  `right_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `group_id` (`group_id`),
-  KEY `right_id` (`right_id`),
-  CONSTRAINT `group_right_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
-  CONSTRAINT `group_right_ibfk_2` FOREIGN KEY (`right_id`) REFERENCES `rights` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `group_right`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `group_user`
 --
 
@@ -287,16 +263,16 @@ CREATE TABLE `matches` (
 -- Dumping data for table `matches`
 --
 
-INSERT INTO `matches` VALUES('7', '32', '1', '0', '8', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 11:30:22');
-INSERT INTO `matches` VALUES('8', '32', '2', '0', '7', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 11:30:22');
-INSERT INTO `matches` VALUES('9', '32', '3', '0', '6', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('10', '32', '4', '0', '5', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('11', '33', '7', '0', '1', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('12', '33', '6', '0', '2', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('13', '33', '5', '0', '3', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('14', '33', '8', '0', '4', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('7', '32', '1', '0', '8', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 23:31:34');
+INSERT INTO `matches` VALUES('8', '32', '2', '0', '7', '0', '0', '1', '2013-05-22 11:30:22', '2013-05-22 23:31:33');
+INSERT INTO `matches` VALUES('9', '32', '3', '0', '6', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:37:32');
+INSERT INTO `matches` VALUES('10', '32', '4', '12', '5', '8', '1', '1', '2013-05-22 11:30:23', '2013-05-22 23:37:45');
+INSERT INTO `matches` VALUES('11', '33', '7', '0', '1', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:31:29');
+INSERT INTO `matches` VALUES('12', '33', '6', '0', '2', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:31:30');
+INSERT INTO `matches` VALUES('13', '33', '5', '0', '3', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:31:30');
+INSERT INTO `matches` VALUES('14', '33', '8', '0', '4', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:31:31');
 INSERT INTO `matches` VALUES('15', '34', '1', '0', '6', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
-INSERT INTO `matches` VALUES('16', '34', '2', '0', '5', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
+INSERT INTO `matches` VALUES('16', '34', '2', '0', '5', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 23:01:09');
 INSERT INTO `matches` VALUES('17', '34', '3', '0', '4', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
 INSERT INTO `matches` VALUES('18', '34', '8', '0', '7', '0', '0', '1', '2013-05-22 11:30:23', '2013-05-22 11:30:23');
 INSERT INTO `matches` VALUES('19', '35', '5', '0', '1', '0', '0', '1', '2013-05-22 11:30:24', '2013-05-22 11:30:24');
@@ -374,6 +350,32 @@ INSERT INTO `rights` VALUES('1', 'access_admin_panel', 'Accèder au panneau d\'a
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sessions`
+--
+
+DROP TABLE IF EXISTS `sessions`;
+
+CREATE TABLE `sessions` (
+  `id` varchar(40) NOT NULL,
+  `last_activity` int(10) NOT NULL,
+  `data` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` VALUES('bSYujPxQdQVuacecBMwD8p1yiQ2BqFovyO71Vrit', '1369343358', 'a:4:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:0:{}s:10:\"csrf_token\";s:40:\"fMArmSX3ASPYEW2F8T0IEmQ0SwlPqDy3ZNgl3L3n\";s:35:\"laravel_auth_drivers_eloquent_login\";i:1;}');
+INSERT INTO `sessions` VALUES('krW5bDhTtKMRTF28IS8V5JB4cnKQfdKY6rcUshDh', '1369343334', 'a:3:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:0:{}s:10:\"csrf_token\";s:40:\"dr1qpz5OGLuhPbV7eug64TnflWHtUDiTqflwF76C\";}');
+INSERT INTO `sessions` VALUES('lHDeHm7bO9EMTx7q2NYi8gVlUoipLjyph5KRkYaR', '1369860804', 'a:3:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:1:{s:7:\"referer\";s:40:\"http://127.0.0.1/Rsltt/public/admin/dump\";}s:10:\"csrf_token\";s:40:\"SgIRvvuAEZW29MdQgRi1KSzIp5oy9AqFfQezMi8V\";}');
+INSERT INTO `sessions` VALUES('oyGUli00v3C1QNDGACrz6frcE29PxuZsYiq83rwW', '1369856134', 'a:3:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:0:{}s:10:\"csrf_token\";s:40:\"AHi5EDfHDBdbyN1rjCXgGBzaKuqmvGs47FVKXEh5\";}');
+INSERT INTO `sessions` VALUES('tPQVhZfwBCuUvegIR5WL5GWsievgzDeqmSLNNkXH', '1369755280', 'a:3:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:0:{}s:10:\"csrf_token\";s:40:\"LCob62k9OqG4nHtofadgFHKguUjzp01zKK8kFTkU\";}');
+INSERT INTO `sessions` VALUES('ZyWnqoHdM0JMNjIDRoUI5xvKlA1kJ4yhUW94PLQr', '1369860809', 'a:4:{s:5:\":new:\";a:0:{}s:5:\":old:\";a:0:{}s:10:\"csrf_token\";s:40:\"YlnAH2SEJbkZWHGDrLCI8KGP3uKG0me4yVQuV5xq\";s:35:\"laravel_auth_drivers_eloquent_login\";i:1;}');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `teams`
 --
 
@@ -434,6 +436,14 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` VALUES('1', '1', 'David', 'Coquatrix', 'david.coquatrix@gmail.com', '9cf95dacd226dcf43da376cdb6cbba7035218921', 'D_Coquatrix.png', '1', '2013-04-18 19:07:23', '2013-04-18 19:07:23');
+INSERT INTO `users` VALUES('1', '1', 'David', 'Coquatrix', 'david.coquatrix@gmail.com', '$2a$08$Vyp7Sb7FcPSHCExQxp8wm.LLR4eTzmAryTNExWmkJjxwH7J66Z7xi', 'D_Coquatrix.png', '1', '2013-04-18 19:07:23', '2013-04-18 19:07:23');
 INSERT INTO `users` VALUES('2', '1', 'Cyril', 'Lefevre', 'c.l@ok.com', 'azerty', 'C_Lefevre.png', '1', '2013-04-18 19:47:33', '2013-04-18 19:47:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for view `classements`
+--
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `classements` AS select `championnat_team`.`championnat_id` AS `championnat_id`,`championnat_team`.`team_id` AS `team_id`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`)),1,0)) AS `played_d`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`)),1,0)) AS `played_e`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`)),1,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`)),1,0))) AS `played`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` > (`champconfs`.`score_max` / 2))),1,0)) AS `win_d`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` > (`champconfs`.`score_max` / 2))),1,0)) AS `win_e`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` > (`champconfs`.`score_max` / 2))),1,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` > (`champconfs`.`score_max` / 2))),1,0))) AS `win`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` = (`champconfs`.`score_max` / 2))),1,0)) AS `nul_d`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` = (`champconfs`.`score_max` / 2))),1,0)) AS `nul_e`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` = (`champconfs`.`score_max` / 2))),1,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` = (`champconfs`.`score_max` / 2))),1,0))) AS `nul`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` < (`champconfs`.`score_max` / 2))),1,0)) AS `loose_d`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` < (`champconfs`.`score_max` / 2))),1,0)) AS `loose_e`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` < (`champconfs`.`score_max` / 2))),1,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` < (`champconfs`.`score_max` / 2))),1,0))) AS `loose`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` = (`champconfs`.`score_max` / 2))),2,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`)),0,if((`matches`.`played` = 0),0,1))))) AS `points_d`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` = (`champconfs`.`score_max` / 2))),2,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`)),0,if((`matches`.`played` = 0),0,1))))) AS `points_e`,sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` = (`champconfs`.`score_max` / 2))),2,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` = (`champconfs`.`score_max` / 2))),2,if((`matches`.`played` = 0),0,1)))))) AS `points` from (((((`championnat_team` join `championnats` on((`championnats`.`id` = `championnat_team`.`championnat_id`))) join `teams` on((`teams`.`id` = `championnat_team`.`team_id`))) join `champconfs` on((`champconfs`.`id` = `championnats`.`champconf_id`))) join `matches` on(((`teams`.`id` = `matches`.`team_d_id`) or (`teams`.`id` = `matches`.`team_e_id`)))) join `journees` on((`journees`.`id` = `matches`.`journee_id`))) group by `championnat_team`.`championnat_id`,`championnat_team`.`team_id` order by sum(if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` > (`champconfs`.`score_max` / 2))),3,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_d_id`) and (`matches`.`score_d` = (`champconfs`.`score_max` / 2))),2,if(((`matches`.`played` = 1) and (`teams`.`id` = `matches`.`team_e_id`) and (`matches`.`score_e` = (`champconfs`.`score_max` / 2))),2,if((`matches`.`played` = 0),0,1)))))) desc;
 
